@@ -15,10 +15,10 @@ TzadikIdentity.init({
         type: Sequelize.STRING,
         allowNull: false
     },
-    identity_creation_timestamp: {
-        type: Sequelize.DATE,
-        allowNull: false
-    }
+    // identity_creation_timestamp: {
+    //     type: Sequelize.STRING
+    //     // ,allowNull: false
+    // }
 }, {
     sequelize,
     modelName: 'tzadik_identity'

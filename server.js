@@ -1,21 +1,18 @@
 const express = require('express')
-const app = express()
 
+const app = express()
 app.use(express.static("public"))
 app.use(express.urlencoded({extended: true}))
 app.use(express.json());
 
-app.get('/', (req, res)=>{
-    console.log('Here');
-    // res.json({msg : "succsess"})
-    //res.download
-    //res.status
-    res.send('Hi')
-})
-
 const userRouter = require("./routes/users")
-
 app.use("/users", userRouter)
+
+const tzadikIdentitiesRouter = require("./routes/tzadik_identities")
+app.use("/tzadik_identities", tzadikIdentitiesRouter)
+
+const tzadikReportsRouter = require("./routes/tzadik_reports")
+app.use("/tzadik_reports", tzadikReportsRouter)
 
 app.listen(3000)
 

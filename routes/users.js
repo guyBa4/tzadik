@@ -90,23 +90,23 @@ router.delete('/delete/:id/:first_name', (req, res)=>{
       })
     res.send(`Delete User With ID ${req.params.id}`)})
 
-router
-  .route("/action/:id/:last_name")
-  .get((req, res) => {
-    console.log(req.user)
-    res.send(`Get User With ID ${req.params.id}`)
-  })
-  .put((req, res) => {
-    res.send(`Update User With ID ${req.params.id}`)
-  })
-  .delete((req, res) => {
-    User.destroy({
-        where: {
-          personal_id: req.params.id,
-          last_name: req.params.last_name
-        },
-      })
-    res.send(`Delete User With ID ${req.params.id}`)
-  })
+// router
+//   .route("/action/:id/:last_name")
+//   .get((req, res) => {
+//     console.log(req.user)
+//     res.send(`Get User With ID ${req.params.id}`)
+//   })
+//   .put((req, res) => {
+//     res.send(`Update User With ID ${req.params.id}`)
+//   })
+//   .delete((req, res) => {
+//     User.destroy({
+//         where: {
+//           personal_id: req.params.id,
+//           last_name: req.params.last_name
+//         },
+//       })
+//     res.send(`Delete User With ID ${req.params.id}`)
+//   })
 
 module.exports = router

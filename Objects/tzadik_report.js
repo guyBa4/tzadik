@@ -15,10 +15,10 @@ TzadikReport.init({
         type: Sequelize.INTEGER,
         allowNull: false
     },
-    report_timestamp: {
-        type: Sequelize.DATE,
-        allowNull: false
-    }
+    // report_timestamp: {
+    //     type: Sequelize.DATE,
+    //     allowNull: false
+    // }
 }, {
     sequelize,
     modelName: 'tzadik_report'
