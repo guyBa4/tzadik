@@ -21,11 +21,11 @@ app.listen(3000)
  * V. Build the folder structure - divide routes to their own files.
  * V. Set up a MySQL server
  * V. Build a proof of concept with an ORM library to access the database.
- * 5. Deploy to the cloud
- * 5.a. Find a cloud provider
+ * V. Deploy to the cloud
+ * V.a. Find a cloud provider
  * 5.b. Deploy node server
  * 5.c. Set up the database in the cloud
- * להקים מכונה וירטואלית ולהתחבר אליה בSSH
+ * V להקים מכונה וירטואלית ולהתחבר אליה בSSH
  */
 
 /**
