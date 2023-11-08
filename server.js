@@ -14,7 +14,9 @@ app.use("/tzadik_identities", tzadikIdentitiesRouter)
 const tzadikReportsRouter = require("./routes/tzadik_reports")
 app.use("/tzadik_reports", tzadikReportsRouter)
 
-app.listen(3000)
+app.listen(3000, '0.0.0.0', () => {
+    console.log('Server is running on port 3000');
+  });
 
 /**
  * V. Make the debugger function
