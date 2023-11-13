@@ -5,19 +5,25 @@ app.use(express.static("public"))
 app.use(express.urlencoded({extended: true}))
 app.use(express.json());
 
-const userRouter = require("./routes/users")
-app.use("/users", userRouter)
+const userRouter = require("./routes/UserRoutes")
+app.use("/Users", userRouter)
 
-const tzadikIdentitiesRouter = require("./routes/tzadik_identities")
-app.use("/tzadik_identities", tzadikIdentitiesRouter)
+const tzadikIdentitiesRouter = require("./routes/TzadikIdentityRoutes")
+app.use("/TzadikIdentities", tzadikIdentitiesRouter)
 
-const tzadikReportsRouter = require("./routes/tzadik_reports")
-app.use("/tzadik_reports", tzadikReportsRouter)
+const tzadikReportsRouter = require("./routes/TzadikReportRoutes")
+app.use("/TzadikReports", tzadikReportsRouter)
 
 app.listen(3000, '0.0.0.0', () => {
     console.log('Server is running on port 3000');
   });
 
+  /**
+   * 1. init database connection from a single file
+   * 2. database credentials should be taken from a enviornmental variables settings
+   * 3. Naming: Urls - CaptialCase, Filenames: CapitalCase, Variable names: camelCase  
+   * 4. add tokens
+   */
 /**
  * V. Make the debugger function
  * V. Build the folder structure - divide routes to their own files.

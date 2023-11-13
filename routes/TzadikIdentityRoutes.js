@@ -1,8 +1,8 @@
 const express = require("express")
 var bodyParser = require('body-parser')
-const User = require('../Objects/user')
-const TzadikReport = require('../Objects/tzadik_report');
-const TzadikIdentity = require('../Objects/tzadik_identity')
+const User = require('../objects/UserModel')
+const TzadikReport = require('../objects/TzadikReportsModel');
+const TzadikIdentity = require('../objects/TzadikIdentityModel')
 const router = express.Router()
 const Sequelize = require("sequelize")
 // const sequelize = new Sequelize("tzadik", "postgres", "okokokok", {
