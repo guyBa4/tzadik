@@ -1,4 +1,5 @@
 const Sequelize = require('sequelize');
+// const credentials = require('./Credentials')
 
 const sequelize = new Sequelize({
   database: 'postgres',

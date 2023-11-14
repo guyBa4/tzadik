@@ -5,7 +5,7 @@ const TzadikReport = require('../objects/TzadikReportsModel');
 const TzadikIdentity = require('../objects/TzadikIdentityModel')
 const router = express.Router()
 const Sequelize = require("sequelize")
-const sequelize = require('../db');
+const sequelize = require('../dal/DB');
 
 //add new tzadik Identity
 router.post('/add_tzadik', (req, res) =>{

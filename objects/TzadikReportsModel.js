@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const sequelize = require('../db');
+const sequelize = require('../dal/DB');
 
 class TzadikReport extends Sequelize.Model {}
 TzadikReport.init({

@@ -19,7 +19,7 @@ app.listen(3000, '0.0.0.0', () => {
   });
 
   /**
-   * 1. init database connection from a single file
+   * V. init database connection from a single file
    * 2. database credentials should be taken from a enviornmental variables settings
    * 3. Naming: Urls - CaptialCase, Filenames: CapitalCase, Variable names: camelCase  
    * 4. add tokens
@@ -31,8 +31,8 @@ app.listen(3000, '0.0.0.0', () => {
  * V. Build a proof of concept with an ORM library to access the database.
  * V. Deploy to the cloud
  * V.a. Find a cloud provider
- * 5.b. Deploy node server
- * 5.c. Set up the database in the cloud
+ * V.b. Deploy node server
+ * V.c. Set up the database in the cloud
  * V להקים מכונה וירטואלית ולהתחבר אליה בSSH
  */
 
