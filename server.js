@@ -20,8 +20,8 @@ app.listen(3000, '0.0.0.0', () => {
 
   /**
    * V. init database connection from a single file
-   * 2. database credentials should be taken from a enviornmental variables settings
-   * 3. Naming: Urls - CaptialCase, Filenames: CapitalCase, Variable names: camelCase  
+   * V. database credentials should be taken from a enviornmental variables settings
+   * V. Naming: Urls - CaptialCase, Filenames: CapitalCase, Variable names: camelCase  
    * 4. add tokens
    */
 /**
