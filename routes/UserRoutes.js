@@ -6,8 +6,7 @@ const TzadikIdentity = require('../objects/TzadikIdentityModel')
 const router = express.Router()
 const Sequelize = require("sequelize")
 const sequelize = require('../dal/DB');
-const SecurityController = require('../controllers/SecurityController'); // Import the SecurityController
-
+const SecurityController = require('../controllers/SecurityController');
 
 router.get('/', (req, res) =>{
     sequelize.authenticate().then(()=>{

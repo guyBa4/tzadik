@@ -26,7 +26,7 @@ router.post('/AddTzadik', SecurityController.verifyToken, (req, res) =>{
 });
 
 
-router.get('/GetById/:id/', SecurityController.verifyToken, async (req, res) => {
+router.get('/GetById/:id', SecurityController.verifyToken, async (req, res) => {
     try {
         const tzadikId = req.params.id;
         const tzadik = await Modelcontroller.getTzadikById(tzadikId);
