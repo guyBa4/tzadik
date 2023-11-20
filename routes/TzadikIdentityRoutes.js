@@ -6,10 +6,11 @@ const TzadikIdentity = require('../objects/TzadikIdentityModel')
 const router = express.Router()
 const Sequelize = require("sequelize")
 const sequelize = require('../dal/DB');
-const Modelcontroller = require('../controllers/ModelsController'); // Import the Modelcontroller
+const SecurityController = require('../controllers/SecurityController');
+const Modelcontroller = require('../controllers/ModelsController');
 
 //add new tzadik Identity
-router.post('/AddTzadik', (req, res) =>{
+router.post('/AddTzadik', SecurityController.verifyToken, (req, res) =>{
     body = req.body;
     const newTzadikIdentity = TzadikIdentity.build(body);
     newTzadikIdentity.save()
@@ -25,7 +26,7 @@ router.post('/AddTzadik', (req, res) =>{
 });
 
 
-router.get('/GetById/:id/', async (req, res) => {
+router.get('/GetById/:id/', SecurityController.verifyToken, async (req, res) => {
     try {
         const tzadikId = req.params.id;
         const tzadik = await Modelcontroller.getTzadikById(tzadikId);
@@ -44,7 +45,7 @@ router.get('/GetById/:id/', async (req, res) => {
 
 
 //update assignment for a tzadik
-router.put('/UpdateAssignment/:id/:assign', async (req, res)=>{
+router.put('/UpdateAssignment/:id/:assign', SecurityController.verifyToken, async (req, res)=>{
     try
     {
         assign = req.params.assign;
@@ -69,7 +70,7 @@ router.put('/UpdateAssignment/:id/:assign', async (req, res)=>{
     }
 });
 //delete tzadik by id
-router.delete('/Delete/:id', (req, res)=>{
+router.delete('/Delete/:id', SecurityController.verifyToken, (req, res)=>{
     TzadikIdentity.destroy({
         where: {
           tzadik_id: req.params.id,

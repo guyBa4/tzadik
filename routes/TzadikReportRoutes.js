@@ -6,10 +6,11 @@ const TzadikIdentity = require('../objects/TzadikIdentityModel')
 const router = express.Router()
 const Sequelize = require("sequelize")
 const sequelize = require('../dal/DB');
+const SecurityController = require('../controllers/SecurityController');
 const Modelcontroller = require("../controllers/ModelsController");
 
 //add new tzadik report
-router.post('/AddReport', async (req, res) =>{
+router.post('/AddReport', SecurityController.verifyToken, async (req, res) =>{
     body = req.body;
 
     const reportLegalResult = await Modelcontroller.checkIfReportLegal(body);
@@ -32,7 +33,7 @@ router.post('/AddReport', async (req, res) =>{
 });
 
 //get tzadik report by id
-router.get('/GetById/:id', (req, res)=>{
+router.get('/GetById/:id', SecurityController.verifyToken, (req, res)=>{
     const tzadik = TzadikReport.findOne({
         where:{
             id: req.params.id
@@ -51,7 +52,7 @@ router.get('/GetById/:id', (req, res)=>{
 })
 
 //delete report by id
-router.delete('/Delete/:id', (req, res)=>{
+router.delete('/Delete/:id', SecurityController.verifyToken, (req, res)=>{
     TzadikReport.destroy({
         where: {
           id: req.params.id,
@@ -61,7 +62,7 @@ router.delete('/Delete/:id', (req, res)=>{
 });
 
 
-router.get('/GenerateReport/:unit_id', async (req, res) => {
+router.get('/GenerateReport/:unit_id', SecurityController.verifyToken, async (req, res) => {
     try {
         // Get all tzadikim under unit_id
         const tzadiks = await TzadikIdentity.findAll({
