@@ -6,6 +6,7 @@ const TzadikIdentity = require('../objects/TzadikIdentityModel')
 const router = express.Router()
 const Sequelize = require("sequelize")
 const sequelize = require('../dal/DB');
+const Modelcontroller = require('../controllers/ModelsController'); // Import the Modelcontroller
 
 //add new tzadik Identity
 router.post('/add_tzadik', (req, res) =>{
@@ -23,44 +24,50 @@ router.post('/add_tzadik', (req, res) =>{
 
 });
 
-//get get tzadik by id
-router.get('/get_by_id/:id/', (req, res)=>{
-    const tzadik = TzadikIdentity.findOne({
-        where:{
-            tzadik_id: req.params.id
+
+router.get('/get_by_id/:id/', async (req, res) => {
+    try {
+        const tzadikId = req.params.id;
+        const tzadik = await Modelcontroller.getTzadikById(tzadikId);
+        if (tzadik === null) {
+            console.error('Error finding tzadik with id: ', tzadikId);
+            res.status(500).json({ error: 'Tzadik does not exist' });
+        } else {
+            console.log('Tzadik found');
+            res.status(201).json({ tzadik: tzadik });
         }
-    }).then((tzadik)=>{
-        if (tzadik === null){
-            console.error('error finding tzadik with id: ', id);
-            res.status(500).json({ error: 'tzadik not exists' });
-        }
-        else
-        {
-            console.log('tzadik found');
-            res.status(201).json({ tzadik : tzadik });
-        }
-    })
-})
+    } catch (error) {
+        console.error('Error:', error.message);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
 
 //update assignment for a tzadik
-router.put('/update_assignment/:id/:assign', (req, res)=>{
-    id = req.params.id;
-    assign = req.params.assign;
-    const tzadikIdentity = TzadikIdentity.findOne({
-        where:{
-            tzadik_id: id
-        }
-    }).then((tzadikIdentity)=>{
+router.put('/update_assignment/:id/:assign', async (req, res)=>{
+    try
+    {
+        assign = req.params.assign;
+        const tzadikId = req.params.id;
+        const tzadik = await Modelcontroller.getTzadikById(tzadikId);
         if (tzadikIdentity === null){
             console.error('error finding tzadik with id: ', id);
             res.status(500).json({ error: 'tzadik not exists' });
         }
-        tzadikIdentity.assignment = assign;
-        tzadikIdentity.save();
-        console.log('update assignment success');
-        res.status(201).json({ message: 'User update assignment successfully' });
-    })});
+        else{
+            tzadikIdentity.assignment = assign;
+            tzadikIdentity.save();
+            console.log('update assignment success');
+            res.status(201).json({ message: 'User update assignment successfully' });
+        }
+    }
+    catch (error) 
+    {
+        console.error('Error:', error.message);
+        res.status(500).json({ error: 'Internal server error' });
 
+    }
+});
 //delete tzadik by id
 router.delete('/delete/:id', (req, res)=>{
     TzadikIdentity.destroy({

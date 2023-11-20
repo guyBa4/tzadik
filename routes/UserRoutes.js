@@ -6,7 +6,7 @@ const TzadikIdentity = require('../objects/TzadikIdentityModel')
 const router = express.Router()
 const Sequelize = require("sequelize")
 const sequelize = require('../dal/DB');
-const SecurityController = require('../SecurityController'); // Import the SecurityController
+const SecurityController = require('../controllers/SecurityController'); // Import the SecurityController
 
 
 router.get('/', (req, res) =>{
@@ -31,7 +31,7 @@ router.post('/login/:personal_id/:password', (req, res)=>{
             console.error('error finding user with id: ', id);
             res.status(500).json({ error: 'user not exists' });
         }
-        if (user.password == password)
+        if (user.password == password) // correct password
         {
             console.log('log in success');
                 // Modify the sign function call
@@ -46,9 +46,8 @@ router.post('/login/:personal_id/:password', (req, res)=>{
             token,
         });
     });
-            // res.status(201).json({ message: 'User logged in successfully ',user: user});
         }
-        else
+        else // incorrect password
         {
             console.error('incorrect password for id: ', id);
             res.status(500).json({ error: 'incorrect password ' , axpected_pass : user.password, actual_password: password});

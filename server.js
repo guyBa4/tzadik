@@ -18,11 +18,16 @@ app.listen(3000, '0.0.0.0', () => {
     console.log('Server is running on port 3000');
   });
 
+
+  /**
+   how to generate a good key and where to store it safetly?
+   */
+  
   /**
    * V. init database connection from a single file
    * V. database credentials should be taken from a enviornmental variables settings
    * V. Naming: Urls - CaptialCase, Filenames: CapitalCase, Variable names: camelCase  
-   * 4. add tokens
+   * V. add tokens
    */
 /**
  * V. Make the debugger function
