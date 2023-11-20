@@ -9,7 +9,7 @@ const sequelize = require('../dal/DB');
 const Modelcontroller = require("../controllers/ModelsController");
 
 //add new tzadik report
-router.post('/add_report', async (req, res) =>{
+router.post('/AddReport', async (req, res) =>{
     body = req.body;
 
     const reportLegalResult = await Modelcontroller.checkIfReportLegal(body);
@@ -32,7 +32,7 @@ router.post('/add_report', async (req, res) =>{
 });
 
 //get tzadik report by id
-router.get('/get_by_id/:id', (req, res)=>{
+router.get('/GetById/:id', (req, res)=>{
     const tzadik = TzadikReport.findOne({
         where:{
             id: req.params.id
@@ -51,7 +51,7 @@ router.get('/get_by_id/:id', (req, res)=>{
 })
 
 //delete report by id
-router.delete('/delete/:id', (req, res)=>{
+router.delete('/Delete/:id', (req, res)=>{
     TzadikReport.destroy({
         where: {
           id: req.params.id,
@@ -61,7 +61,7 @@ router.delete('/delete/:id', (req, res)=>{
 });
 
 
-router.get('/genererate_report/:unit_id', async (req, res) => {
+router.get('/GenerateReport/:unit_id', async (req, res) => {
     try {
         // Get all tzadikim under unit_id
         const tzadiks = await TzadikIdentity.findAll({
@@ -74,11 +74,8 @@ router.get('/genererate_report/:unit_id', async (req, res) => {
 
         for (const tzadik of tzadiks) {
             const tzadikId = tzadik.tzadik_id;
-
-            const [results, metadata] = await sequelize.query(
-                'SELECT tzadik_id, reporter_id FROM tzadik_reports WHERE tzadik_id = ' + tzadikId +
-                ' ORDER BY "createdAt" DESC LIMIT 1'
-            );
+            const query = `SELECT tzadik_id, reporter_id FROM tzadik_reports WHERE tzadik_id = ${tzadikId} ORDER BY "createdAt" DESC LIMIT 1`;
+            const [results, metadata] = await sequelize.query(query);
 
             reportList.push(results[0]);
             console.log('Query results:', results[0]);

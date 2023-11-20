@@ -19,7 +19,7 @@ router.get('/', (req, res) =>{
 
 
 //get user by id and password and return if exist
-router.post('/login/:personal_id/:password', (req, res)=>{
+router.post('/Login/:personal_id/:password', (req, res)=>{
     id = req.params.personal_id;
     password = req.params.password;
     const user = User.findOne({
@@ -56,7 +56,7 @@ router.post('/login/:personal_id/:password', (req, res)=>{
 })
 
 //update first name for user
-router.put('/update_first_name/:personal_id/:first_name', SecurityController.verifyToken, (req, res)=>{
+router.put('/UpdateFirstName/:personal_id/:first_name', SecurityController.verifyToken, (req, res)=>{
     id = req.params.personal_id;
     first_name = req.params.first_name;
     const user = User.findOne({
@@ -77,7 +77,7 @@ router.put('/update_first_name/:personal_id/:first_name', SecurityController.ver
 
 
 //add new user
-router.post('/add_user', (req, res) =>{
+router.post('/AddUser', (req, res) =>{
     body = req.body;
     const newUser = User.build(body);
     newUser.save()
@@ -94,7 +94,7 @@ router.post('/add_user', (req, res) =>{
 
 
 //delete user by id
-router.delete('/delete/:id/:first_name', (req, res)=>{
+router.delete('/Delete/:id/:first_name', (req, res)=>{
     User.destroy({
         where: {
           personal_id: req.params.id,
